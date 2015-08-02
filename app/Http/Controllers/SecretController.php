@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Secret;
+use Carbon\Carbon;
 use Rhumsaa\Uuid\Uuid;
 
 class SecretController extends Controller
@@ -39,10 +41,14 @@ class SecretController extends Controller
      */
     public function store(Request $request)
     {
-        $uuid4 = Uuid::uuid4();
-        $secret = $request->input('secret');
+        $secret = Secret::create(array(
+            'secret'        => $request->input('secret'),
+            'uuid4'         => Uuid::uuid4(),
+            'expires_at'    => Carbon::now()->addMinutes(5),
+            'expires_views' => 1
+        ));
 
-        return view('store', compact('secret', 'uuid4'));
+        return view('store', compact('secret'));
     }
 
     /**
