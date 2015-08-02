@@ -91,10 +91,11 @@ class SecretController extends Controller
             } else 
             {
                 $secret = Crypt::decrypt($encryptedSecret->secret);
+                $expires_at = $encryptedSecret->expires_at;
             }
         }
 
-        return view('show', compact('secret'));
+        return view('show', compact('secret', 'expires_at'));
     }
 
     /**
