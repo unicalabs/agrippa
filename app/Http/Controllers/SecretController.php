@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use Rhumsaa\Uuid\Uuid;
+
 class SecretController extends Controller
 {
     /**
@@ -37,8 +39,10 @@ class SecretController extends Controller
      */
     public function store(Request $request)
     {
+        $uuid4 = Uuid::uuid4();
         $secret = $request->input('secret');
-        return view('store', compact('secret'));
+
+        return view('store', compact('secret', 'uuid4'));
     }
 
     /**

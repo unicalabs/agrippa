@@ -1,7 +1,10 @@
 @extends ('app')
 
-@section('title', 'Processed')
+@section('title', 'Created')
 
 @section('content')
-{{ $secret }}
+<ul class="list-group">
+	<li class="list-group-item">{{ $secret }}</li>
+	<li class="list-group-item">{{ $uuid4 }}</li>
+</ul>
 @stop
