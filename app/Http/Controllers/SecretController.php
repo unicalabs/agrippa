@@ -80,22 +80,23 @@ class SecretController extends Controller
             return Hash::check($uuid4, $secret->uuid4);
         });
 
-        $encryptedSecret = $filteredSecretsCollection->first();
+        $secret = $filteredSecretsCollection->first();
 
-        if(!empty($encryptedSecret))
+        if(!empty($secret))
         {
             // Check for expiry
-            if(Carbon::now()->gte($encryptedSecret->expires_at))
+            if(Carbon::now()->gte($secret->expires_at))
             {
-                $encryptedSecret->delete();
+                $secret->delete();
             } else 
             {
-                $secret = Crypt::decrypt($encryptedSecret->secret);
-                $expires_at = $encryptedSecret->expires_at;
+                $secretDecrypted = Crypt::decrypt($secret->secret);
+                $expires_at = $secret->expires_at;
+                $views_remaining = $secret->expires_views - $secret->count_views;
             }
         }
 
-        return view('show', compact('secret', 'expires_at'));
+        return view('show', compact('secretDecrypted', 'expires_at', 'views_remaining'));
     }
 
     /**
