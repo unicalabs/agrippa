@@ -18,6 +18,7 @@
 			</span>
 		@endif
 	@else
-		Secret not found.
+		<pre></pre>
+		<span class="label label-danger">Secret not found.<span>
 	@endif
 @stop
