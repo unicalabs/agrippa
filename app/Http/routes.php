@@ -11,4 +11,10 @@
 |
 */
 
-Route::get('/', 'SecretController@create');
+Route::get('/', function()
+{
+	return Redirect::to('create');
+});
+
+Route::get('create', 'SecretController@create');
+Route::post('store', 'SecretController@store');

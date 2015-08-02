@@ -3,16 +3,13 @@
 @section('title', 'Create')
 
 @section('content')
-<form action="" method="POST" role="form">
-    <legend>Form title</legend>
-
+<form action="store" method="POST" role="form">
+    <legend>Create Shared Secret</legend>
     <div class="form-group">
-        <label for="">label</label>
-        <input type="text" class="form-control" id="" placeholder="Input field">
+        <label for="secret">Secret</label>
+        <textarea name="secret" id="secret" class="form-control" rows="3" required="required"></textarea>
     </div>
-
-    
-
+    <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 @stop

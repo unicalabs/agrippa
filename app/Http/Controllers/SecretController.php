@@ -37,7 +37,8 @@ class SecretController extends Controller
      */
     public function store(Request $request)
     {
-        return view('result');
+        $secret = $request->input('secret');
+        return view('store', compact('secret'));
     }
 
     /**
