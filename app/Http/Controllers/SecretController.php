@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 
 use App\Secret;
 use Carbon\Carbon;
+use Crypt;
 use Rhumsaa\Uuid\Uuid;
 
 class SecretController extends Controller
@@ -42,7 +43,7 @@ class SecretController extends Controller
     public function store(Request $request)
     {
         $secret = Secret::create(array(
-            'secret'        => $request->input('secret'),
+            'secret'        => Crypt::encrypt($request->input('secret')),
             'uuid4'         => Uuid::uuid4(),
             'expires_at'    => Carbon::now()->addMinutes(5),
             'expires_views' => 1
@@ -59,7 +60,13 @@ class SecretController extends Controller
      */
     public function show($uuid4)
     {
-        $secret = Secret::where('uuid4', $uuid4)->first();
+        $encryptedSecret = Secret::where('uuid4', $uuid4)->first();
+
+        if(!empty($encryptedSecret))
+        {
+            $secret = Crypt::decrypt($encryptedSecret->secret);
+        }
+
         return view('show', compact('secret'));
     }
 

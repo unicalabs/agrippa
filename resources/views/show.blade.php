@@ -4,7 +4,7 @@
 
 @section('content')
 	@if(!empty($secret))
-		<pre>{{ $secret->secret }}</pre>
+		<pre>{{ $secret }}</pre>
 	@else
 		Secret not found.
 	@endif
