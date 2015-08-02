@@ -3,5 +3,5 @@
 @section('title', 'Created')
 
 @section('content')
-	<pre>{{ Request::root() }}/show/{{ $secret->uuid4 }}</pre>
+	<pre>{{ Request::root() }}/show/{{ $uuid4 }}</pre>
 @stop

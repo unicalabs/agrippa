@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Secret;
 use Carbon\Carbon;
 use Crypt;
+use Hash;
 use Rhumsaa\Uuid\Uuid;
 
 class SecretController extends Controller
@@ -42,14 +43,15 @@ class SecretController extends Controller
      */
     public function store(Request $request)
     {
-        $secret = Secret::create(array(
+        $uuid4 = Uuid::uuid4();
+        Secret::create(array(
             'secret'        => Crypt::encrypt($request->input('secret')),
-            'uuid4'         => Uuid::uuid4(),
+            'uuid4'         => Hash::make($uuid4),
             'expires_at'    => Carbon::now()->addMinutes(5),
             'expires_views' => 1
         ));
 
-        return view('store', compact('secret'));
+        return view('store', compact('uuid4'));
     }
 
     /**
@@ -60,7 +62,24 @@ class SecretController extends Controller
      */
     public function show($uuid4)
     {
-        $encryptedSecret = Secret::where('uuid4', $uuid4)->first();
+
+        /* The secret's uuid is hashed in the database to reduce the likelihood 
+        that a record can be linked back to a URL. However, Laravel's hashing 
+        implementation does not return a consistent string (for good reason), 
+        making querying directly by the hashed value impossible. Therefore, we 
+        must perform a collection filtering operation on all records in the 
+        database, which is less than ideal for performance. For gigantic
+        installations, we could perhaps shard the data (virtually) and pass the
+        shard ID in the retrieval URL for use as a first-pass filter prior to
+        performing the hash check, but that is frought with potential pain. */
+
+        $secretsCollection = Secret::all();
+
+        $filteredSecretsCollection = $secretsCollection->filter(function($secret) use ($uuid4){
+            return Hash::check($uuid4, $secret->uuid4);
+        });
+
+        $encryptedSecret = $filteredSecretsCollection->first();
 
         if(!empty($encryptedSecret))
         {
