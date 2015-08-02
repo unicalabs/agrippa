@@ -3,6 +3,7 @@
 @section('title', 'Retrieve')
 
 @section('content')
+	<legend>Shared Secret</legend>
 	@if(!empty($secretDecrypted))
 		<pre>{{ $secretDecrypted }}</pre>
 

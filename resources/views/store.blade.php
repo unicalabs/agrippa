@@ -3,6 +3,7 @@
 @section('title', 'Created')
 
 @section('content')
+	<legend>Shared Secret</legend>
 	<pre>{{ Request::root() }}/show/{{ $uuid4 }}</pre>
 	<span class="label label-default">Expires {{ $expires_at->diffForHumans() }} or in {{ $views_remaining }} 
 		@if($views_remaining == 1)

@@ -3,9 +3,8 @@
 @section('title', 'Create')
 
 @section('content')
+	<legend>Create Shared Secret</legend>
 	<form action="store" method="POST" role="form">
-	    <legend>Create Shared Secret</legend>
-
 	    <div class="form-group">
 	        <label for="secret">Secret</label>
 	        <textarea name="secret" id="secret" class="form-control" rows="3" required="required"></textarea>
@@ -20,7 +19,7 @@
 		</div>
 
 		<div class="form-group">
-		    <label for="expires_views">View Limit</span>
+		    <label for="expires_views">View Limit</label>
 		    <input type="number" name="expires_views" id="expires_views" class="form-control" value="5" min="1" max="" step="" required="required" title="">
 	    </div>
 
