@@ -85,7 +85,7 @@ class SecretController extends Controller
         if(!empty($secret))
         {
             // Check for expiry
-            if(Carbon::now()->gte($secret->expires_at))
+            if(Carbon::now()->gte($secret->expires_at) || $secret->count_views >= $secret->expires_views)
             {
                 $secret->delete();
             } else 
