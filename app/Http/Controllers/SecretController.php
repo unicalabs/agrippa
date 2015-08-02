@@ -32,7 +32,9 @@ class SecretController extends Controller
      */
     public function create()
     {
-        return view('create');
+        // Set expiry time to an hour from now
+        $now = Carbon::now()->addHour();
+        return view('create', compact('now'));
     }
 
     /**
@@ -43,12 +45,14 @@ class SecretController extends Controller
      */
     public function store(Request $request)
     {
+
         $uuid4 = Uuid::uuid4();
+        $timeString = $request->input('expires_date') . ' ' . $request->input('expires_time');
         $secret = Secret::create(array(
             'secret'        => Crypt::encrypt($request->input('secret')),
             'uuid4'         => Hash::make($uuid4),
-            'expires_at'    => Carbon::now()->addMinutes(5),
-            'expires_views' => 1
+            'expires_at'    => Carbon::createFromFormat('Y-m-d H:i', $timeString),
+            'expires_views' => $request->input('expires_views')
         ));
 
         $expires_at = $secret->expires_at;
