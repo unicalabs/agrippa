@@ -11,6 +11,4 @@
 |
 */
 
-Route::get('/', function () {
-    return view('create');
-});
+Route::get('/', 'SecretController@create');

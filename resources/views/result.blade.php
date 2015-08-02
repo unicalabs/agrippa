@@ -1,6 +1,6 @@
 @extends ('app')
 
-@section('title', 'Create')
+@section('title', 'Processed')
 
 @section('content')
 <form action="" method="POST" role="form">
