@@ -75,7 +75,8 @@ class SecretController extends Controller
 
         $secretsCollection = Secret::all();
 
-        $filteredSecretsCollection = $secretsCollection->filter(function($secret) use ($uuid4){
+        $filteredSecretsCollection = $secretsCollection->filter(function($secret) use ($uuid4)
+        {
             return Hash::check($uuid4, $secret->uuid4);
         });
 
@@ -83,7 +84,14 @@ class SecretController extends Controller
 
         if(!empty($encryptedSecret))
         {
-            $secret = Crypt::decrypt($encryptedSecret->secret);
+            // Check for expiry
+            if(Carbon::now()->gte($encryptedSecret->expires_at))
+            {
+                $encryptedSecret->delete();
+            } else 
+            {
+                $secret = Crypt::decrypt($encryptedSecret->secret);
+            }
         }
 
         return view('show', compact('secret'));
