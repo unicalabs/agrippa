@@ -4,10 +4,7 @@
 
 @section('content')
 	@if(!empty($secret))
-		<ul class="list-group">
-			<li class="list-group-item">{{ $secret->secret }}</li>
-			<li class="list-group-item">{{ $secret->uuid4 }}</li>
-		</ul>
+		<pre>{{ $secret->secret }}</pre>
 	@else
 		Secret not found.
 	@endif

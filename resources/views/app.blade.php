@@ -9,7 +9,11 @@
     <body>
         <div class="container">
             <div class="content">
-                @yield('content')
+                <div class="jumbotron">
+                    <div class="container">
+                        @yield('content')
+                    </div>
+                </div>
             </div>
         </div>
 
