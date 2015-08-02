@@ -6,8 +6,6 @@
 	@if(!empty($secretDecrypted))
 		<pre>{{ $secretDecrypted }}</pre>
 
-
-
 		@if($views_remaining == 0)
 			<span class="label label-warning">Expired! (This link won't work again.)</span>
 		@else

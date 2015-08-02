@@ -44,14 +44,17 @@ class SecretController extends Controller
     public function store(Request $request)
     {
         $uuid4 = Uuid::uuid4();
-        Secret::create(array(
+        $secret = Secret::create(array(
             'secret'        => Crypt::encrypt($request->input('secret')),
             'uuid4'         => Hash::make($uuid4),
             'expires_at'    => Carbon::now()->addMinutes(5),
             'expires_views' => 1
         ));
 
-        return view('store', compact('uuid4'));
+        $expires_at = $secret->expires_at;
+        $views_remaining = $secret->expires_views - $secret->count_views;
+
+        return view('store', compact('uuid4', 'expires_at', 'views_remaining'));
     }
 
     /**
