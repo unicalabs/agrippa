@@ -90,9 +90,15 @@ class SecretController extends Controller
                 $secret->delete();
             } else 
             {
+                // Increment the view count
+                $secret->increment('count_views');
+
+                // Get attributes for display
                 $secretDecrypted = Crypt::decrypt($secret->secret);
                 $expires_at = $secret->expires_at;
                 $views_remaining = $secret->expires_views - $secret->count_views;
+
+
             }
         }
 
