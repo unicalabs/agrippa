@@ -17,4 +17,7 @@ Route::get('/', function()
 });
 
 Route::get('create', 'SecretController@create');
+
 Route::post('store', 'SecretController@store');
+
+Route::get('show/{uuid4}', 'SecretController@show');

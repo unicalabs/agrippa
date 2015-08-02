@@ -54,12 +54,13 @@ class SecretController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  text  $uuid4
      * @return Response
      */
-    public function show($id)
+    public function show($uuid4)
     {
-        //
+        $secret = Secret::where('uuid4', $uuid4)->first();
+        return view('show', compact('secret'));
     }
 
     /**
