@@ -10,7 +10,6 @@ use App\Http\Controllers\Controller;
 use App\Secret;
 use Carbon\Carbon;
 use Crypt;
-use Hash;
 use Rhumsaa\Uuid\Uuid;
 
 class SecretController extends Controller
@@ -52,7 +51,7 @@ class SecretController extends Controller
         $datetime = $datetime->subHours($request->input('utc_offset'));
         $secret = Secret::create(array(
             'secret'        => Crypt::encrypt($request->input('secret')),
-            'uuid4'         => Hash::make($uuid4),
+            'uuid4'         => crypt($uuid4, '$6$rounds=5000$' . getenv('APP_SALT') . '$'),
             'expires_at'    => $datetime,
             'expires_views' => $request->input('expires_views')
         ));
@@ -72,24 +71,7 @@ class SecretController extends Controller
     public function show($uuid4)
     {
 
-        /* The secret's uuid is hashed in the database to reduce the likelihood 
-        that a record can be linked back to a URL. However, Laravel's hashing 
-        implementation does not return a consistent string (for good reason), 
-        making querying directly by the hashed value impossible. Therefore, we 
-        must perform a collection filtering operation on all records in the 
-        database, which is less than ideal for performance. For gigantic
-        installations, we could perhaps shard the data (virtually) and pass the
-        shard ID in the retrieval URL for use as a first-pass filter prior to
-        performing the hash check, but that is frought with potential pain. */
-
-        $secretsCollection = Secret::all();
-
-        $filteredSecretsCollection = $secretsCollection->filter(function($secret) use ($uuid4)
-        {
-            return Hash::check($uuid4, $secret->uuid4);
-        });
-
-        $secret = $filteredSecretsCollection->first();
+        $secret = Secret::where('uuid4', crypt($uuid4, '$6$rounds=5000$' . getenv('APP_SALT') . '$'))->first();
 
         if(!empty($secret))
         {
@@ -106,8 +88,6 @@ class SecretController extends Controller
                 $secretDecrypted = Crypt::decrypt($secret->secret);
                 $expires_at = $secret->expires_at;
                 $views_remaining = $secret->expires_views - $secret->count_views;
-
-
             }
         }
 
