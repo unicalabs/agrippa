@@ -31,3 +31,11 @@
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 @stop
+
+@section('scriptFooter')
+<script>
+    var offset = moment().utcOffset() / 60;
+    document.getElementById("utc_offset").value = offset;
+    document.getElementById("expires_time").value = moment().add(1, 'hour').format("hh:mm");
+</script>
+@stop
