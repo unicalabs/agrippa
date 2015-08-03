@@ -11,11 +11,14 @@
         </div>
 
         <div class="form-group">
-            <label for="expires_time">Expiration (UTC)</label>
+            <label for="expires_time">Expiration</label>
             <fieldset class="form-inline">
                 <input type="date" name="expires_date" id="expires_date" class="form-control" value="{{ $now->format('Y-m-d') }}" required="required" title="">
                 <input type="time" name="expires_time" id="expires_time" class="form-control" value="{{ $now->format('H:i') }}" required="required" title="">
-                
+                <div class="input-group col-xs-2">
+                    <div class="input-group-addon">UTC</div>
+                    <input type="number" name="utc_offset" id="utc_offset" class="form-control" value="0" required="required" title="">
+                </div>
             </fieldset>
         </div>
 

@@ -48,10 +48,12 @@ class SecretController extends Controller
 
         $uuid4 = Uuid::uuid4();
         $timeString = $request->input('expires_date') . ' ' . $request->input('expires_time');
+        $datetime = Carbon::createFromFormat('Y-m-d H:i', $timeString);
+        $datetime = $datetime->subHours($request->input('utc_offset'));
         $secret = Secret::create(array(
             'secret'        => Crypt::encrypt($request->input('secret')),
             'uuid4'         => Hash::make($uuid4),
-            'expires_at'    => Carbon::createFromFormat('Y-m-d H:i', $timeString),
+            'expires_at'    => $datetime,
             'expires_views' => $request->input('expires_views')
         ));
 
