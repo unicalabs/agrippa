@@ -34,7 +34,7 @@ class SecretController extends Controller
     {
         // Set expiry time to an hour from now
         $now = Carbon::now()->addHour();
-        return view('create', compact('now'));
+        return view('secret.create', compact('now'));
     }
 
     /**
@@ -58,7 +58,7 @@ class SecretController extends Controller
         $expires_at = $secret->expires_at;
         $views_remaining = $secret->expires_views - $secret->count_views;
 
-        return view('store', compact('uuid4', 'expires_at', 'views_remaining'));
+        return view('secret.store', compact('uuid4', 'expires_at', 'views_remaining'));
     }
 
     /**
@@ -109,7 +109,7 @@ class SecretController extends Controller
             }
         }
 
-        return view('show', compact('secretDecrypted', 'expires_at', 'views_remaining'));
+        return view('secret.show', compact('secretDecrypted', 'expires_at', 'views_remaining'));
     }
 
     /**
