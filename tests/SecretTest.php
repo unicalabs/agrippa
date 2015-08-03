@@ -12,6 +12,12 @@ class SecretTest extends TestCase
 
     use DatabaseTransactions;
 
+    public function setUp() {
+        parent::setUp();
+        $this->faker = Faker\Factory::create();
+
+    }
+
     /**
      * Test secret creation.
      *
@@ -33,20 +39,15 @@ class SecretTest extends TestCase
      */
     public function testRetrieveSecret()
     {
-        $faker = Faker\Factory::create();
-
-        $secret_intermediate = $faker->word(32);
-        $secret = Crypt::encrypt($secret_intermediate);
-        $uuid4_intermediate = Uuid::uuid4();
-        $uuid4 = Hash::make($uuid4_intermediate);
+        $data = $this->secretData();
 
         $secret = factory(App\Secret::class)->create([
-            'uuid4' => $uuid4,
-            'secret' => $secret
+            'uuid4' => $data['uuid4'],
+            'secret' => $data['secret']
         ]);
 
-        $this->visit('/show/' . $uuid4_intermediate)
-             ->see($secret_intermediate);
+        $this->visit('/show/' . $data['uuid4_intermediate'])
+             ->see($data['secret_intermediate']);
     }
 
     /**
@@ -56,22 +57,53 @@ class SecretTest extends TestCase
      */
     public function testRetrieveViewsExpiredSecret()
     {
-        $faker = Faker\Factory::create();
-
-        $secret_intermediate = $faker->word(32);
-        $secret = Crypt::encrypt($secret_intermediate);
-        $uuid4_intermediate = Uuid::uuid4();
-        $uuid4 = Hash::make($uuid4_intermediate);
-        $count_views = $faker->numberBetween(5,1000);
+        $data = $this->secretData();
 
         $secret = factory(App\Secret::class)->create([
-            'uuid4' => $uuid4,
-            'secret' => $secret,
-            'expires_views' => $count_views,
-            'count_views' => $count_views
+            'uuid4' => $data['uuid4'],
+            'secret' => $data['secret'],
+            'expires_views' => $data['count_views'],
+            'count_views' => $data['count_views']
         ]);
 
-        $this->visit('/show/' . $uuid4_intermediate)
+        $this->visit('/show/' . $data['uuid4_intermediate'])
              ->see('Secret not found.');
     }
+
+    /**
+     * Test time-expired secret retrieval.
+     *
+     * @return void
+     */
+    public function testRetrieveTimeExpiredSecret()
+    {
+        $data = $this->secretData();
+
+        $secret = factory(App\Secret::class)->create([
+            'uuid4' => $data['uuid4'],
+            'secret' => $data['secret'],
+            'expires_at' => $this->faker->dateTimeBetween('-5 days', '-5 minutes')
+        ]);
+
+        $this->visit('/show/' . $data['uuid4_intermediate'])
+             ->see('Secret not found.');
+    }
+
+    /**
+     * Create basic data for secret creation.
+     *
+     * @return data
+     */
+    public function secretData()
+    {
+        
+        $data['secret_intermediate'] = $this->faker->word(32);
+        $data['secret'] = Crypt::encrypt($data['secret_intermediate']);
+        $data['uuid4_intermediate'] = Uuid::uuid4();
+        $data['uuid4'] = Hash::make($data['uuid4_intermediate']);
+        $data['count_views'] = $this->faker->numberBetween(5,1000);
+
+        return $data;
+    }
+
 }
