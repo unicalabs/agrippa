@@ -12,10 +12,15 @@ class SecretTest extends TestCase
 
     use DatabaseTransactions;
 
+    /**
+     * Set up for testing.
+     *
+     * @return void
+     */
     public function setUp() {
         parent::setUp();
         $this->faker = Faker\Factory::create();
-
+        Artisan::call('migrate');
     }
 
     /**
@@ -96,7 +101,6 @@ class SecretTest extends TestCase
      */
     public function secretData()
     {
-        
         $data['secret_intermediate'] = $this->faker->word(32);
         $data['secret'] = Crypt::encrypt($data['secret_intermediate']);
         $data['uuid4_intermediate'] = Uuid::uuid4();
