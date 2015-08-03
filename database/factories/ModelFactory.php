@@ -1,5 +1,8 @@
 <?php
 
+use Carbon\Carbon;
+use Rhumsaa\Uuid\Uuid;
+
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -11,11 +14,13 @@
 |
 */
 
-$factory->define(App\User::class, function ($faker) {
+$factory->define(App\Secret::class, function ($faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->email,
-        'password' => str_random(10),
-        'remember_token' => str_random(10),
+        'secret' => Crypt::encrypt($faker->word(32)),
+        'uuid4' => Hash::make(Uuid::uuid4()),
+        'created_at' => Carbon::now(),
+        'expires_at' => $faker->dateTimeBetween('+5 minutes', '+5 days'),
+        'expires_views' => $faker->numberBetween(5,1000),
+        'count_views' => 0
     ];
 });
