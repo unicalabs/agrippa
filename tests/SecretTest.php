@@ -48,4 +48,30 @@ class SecretTest extends TestCase
         $this->visit('/show/' . $uuid4_intermediate)
              ->see($secret_intermediate);
     }
+
+    /**
+     * Test views-expired secret retrieval.
+     *
+     * @return void
+     */
+    public function testRetrieveViewsExpiredSecret()
+    {
+        $faker = Faker\Factory::create();
+
+        $secret_intermediate = $faker->word(32);
+        $secret = Crypt::encrypt($secret_intermediate);
+        $uuid4_intermediate = Uuid::uuid4();
+        $uuid4 = Hash::make($uuid4_intermediate);
+        $count_views = $faker->numberBetween(5,1000);
+
+        $secret = factory(App\Secret::class)->create([
+            'uuid4' => $uuid4,
+            'secret' => $secret,
+            'expires_views' => $count_views,
+            'count_views' => $count_views
+        ]);
+
+        $this->visit('/show/' . $uuid4_intermediate)
+             ->see('Secret not found.');
+    }
 }
