@@ -13,3 +13,12 @@
         @endif
     </span>
 @stop
+
+@section('scriptFooter')
+    <script>
+        var offset = moment().utcOffset() / 60;
+        var datetime = moment(document.getElementById("datetime").innerHTML);
+        datetime = datetime.add(offset, 'hour');
+        document.getElementById("datetime").innerHTML = datetime.fromNow();
+    </script>
+@stop
