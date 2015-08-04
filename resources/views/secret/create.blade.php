@@ -24,7 +24,9 @@
 
         <div class="form-group">
             <label for="expires_views">View Limit</label>
-            <input type="number" name="expires_views" id="expires_views" class="form-control" value="5" min="1" max="" step="" required="required" title="">
+            <div class="input-group col-xs-2">
+                <input type="number" name="expires_views" id="expires_views" class="form-control" value="5" min="1" max="" step="" required="required" title="">
+            </div>
         </div>
 
         <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
