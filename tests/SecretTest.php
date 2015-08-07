@@ -103,7 +103,7 @@ class SecretTest extends TestCase
     {
         $data['secret_intermediate'] = $this->faker->word(32);
         $data['secret'] = Crypt::encrypt($data['secret_intermediate']);
-        $data['uuid4_intermediate'] = Uuid::uuid4();
+        $data['uuid4_intermediate'] = Uuid::uuid4()->toString();
         $data['uuid4'] = crypt($data['uuid4_intermediate'], '$6$rounds=5000$' . getenv('APP_SALT') . '$');
         $data['count_views'] = $this->faker->numberBetween(5,1000);
 

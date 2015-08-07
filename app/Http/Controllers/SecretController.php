@@ -45,7 +45,7 @@ class SecretController extends Controller
     public function store(Request $request)
     {
 
-        $uuid4 = Uuid::uuid4();
+        $uuid4 = Uuid::uuid4()->toString();
         $timeString = $request->input('expires_date') . ' ' . $request->input('expires_time');
         $datetime = Carbon::createFromFormat('Y-m-d H:i', $timeString);
         $datetime = $datetime->subHours($request->input('utc_offset'));
