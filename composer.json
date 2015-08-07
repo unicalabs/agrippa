@@ -1,9 +1,6 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
-    "license": "MIT",
-    "type": "project",
+    "name": "bemosior/PHPasswordPusher",
+    "description": "A secret sharing mechanism based on the principal that using a soon-to-be-expiring link to retrieve sensitive information is better than having the sensitive information persist in email, chat, etc....",
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
