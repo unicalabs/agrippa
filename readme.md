@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/bemosior/PHPasswordPusher.svg?branch=develop-v2)](https://travis-ci.org/bemosior/PHPasswordPusher)
+
 ## PHPasswordPusher (v2)
 
 Parallel development for v2 of PHPasswordPusher. **This is a very broken development branch.**
