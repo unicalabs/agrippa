@@ -16,8 +16,10 @@ Parallel development for v2 of PHPasswordPusher. **This is a very broken develop
 
 ### Setup
 
-1. Clone this repository to your location of choice: `git clone git@github.com:bemosior/PHPasswordPusher.git`.
-2. Create the database: `touch PHPasswordPusher/storage/database.sqlite`
+1. Clone this repository and switch to the `develop-v2` branch.
+2. Install the dependencies: `composer install`
+3. Create the database: `touch PHPasswordPusher/storage/database.sqlite`
+4. Run the migrations: `php artisan migrate`
 3. Configure Apache or Nginx to serve `PHPasswordPusher/public`. Use the [Laravel documentation](http://laravel.com/docs/5.1#installation) for guidance, or do some googling until we fix up this documentation.
 
 ### Development
