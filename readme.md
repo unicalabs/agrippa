@@ -1,10 +1,10 @@
-[![Build Status](https://travis-ci.org/bemosior/PHPasswordPusher.svg?branch=develop-v2)](https://travis-ci.org/bemosior/PHPasswordPusher)
+[![Build Status](https://travis-ci.org/unicalabs/agrippa.svg)](https://travis-ci.org/unicalabs/agrippa)
 
-## PHPasswordPusher (v2)
+## Agrippa
 
-Parallel development for v2 of PHPasswordPusher. **This is a very broken development branch.**
+A rewrite of PHPasswordPusher.
 
-**DO NOT USE.**
+**DO NOT USE.** (Under development)
 
 ### Requirements
 * Apache or Nginx
@@ -39,12 +39,12 @@ keys:
     - ~/.ssh/id_rsa
 
 folders:
-    - map: ~/Documents/workspace/PHPasswordPusher
-      to: /home/vagrant/PHPasswordPusher
+    - map: ~/Documents/workspace/agrippa
+      to: /home/vagrant/agrippa
 
 sites:
     - map: phpw.local
-      to: /home/vagrant/PHPasswordPusher/public
+      to: /home/vagrant/agrippa/public
 
 variables:
     - key: APP_ENV
