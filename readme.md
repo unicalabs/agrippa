@@ -23,7 +23,7 @@ Agrippa is a rewrite of PHPasswordPusher, a PHP-based secret sharing mechanism. 
 
 1. Run `composer create-project unicalabs/agrippa myagrippa` to create your instance of Agrippa.
 2. Enter the newly-created project: `cd myagrippa`
-3. Add `APP_SALT` to `.env` with a randomly-generated value.
+3. Change `APP_SALT` in `.env` to a randomly-generated value.
 4. Create the database: `touch storage/database.sqlite` Alternatively, adjust `.env` to use your MySQL, PostgreSQL, or SQL server connection.
 5. Set up the database: `php artisan migrate`
 4. Configure Apache or Nginx to serve the `public` folder. Use the [Laravel documentation](http://laravel.com/docs/5.1#installation) for guidance, or do some googling until we fix up this documentation.
