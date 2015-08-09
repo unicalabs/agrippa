@@ -1,0 +1,14 @@
+---
+title: Design Overview
+layout: default
+---
+
+<p>
+Secrets are encrypted and stored in the database using <code>AES-256-CBC</code>. The 32-character <code>APP_KEY</code> inside the <code>.env</code> file is generated at install and used to encrypt the secrets.
+</p>
+
+<p>
+Links are constructed with UUIDs (v4) and are salted (with the <code>APP_SALT</code> value inside the <code>.env</code> file) then hashed (SHA-512) before storage.
+</p>
+
+<p>An individual link is checked for expiration or a surpassed view limit at each retrieval attempt. If the link should not be shown, its data is deleted. Future versions may include a scheduled job to regularly check link status.</p>
