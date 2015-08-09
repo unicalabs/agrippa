@@ -3,4 +3,70 @@ title: Getting Started
 layout: default
 ---
 
-{% include content.md markdown=true%}
+<h1>About</h1>
+<p>
+Agrippa is a rewrite of <a href="https://github.com/bemosior/PHPasswordPusher">PHPasswordPusher</a>, a PHP-based secret sharing mechanism. Named after the work of <a href="https://en.wikipedia.org/wiki/Agrippa_(A_Book_of_the_Dead)">William Gibson</a>, Agrippa operates on the principle that sharing a temporary link to sensitive information is better than having the sensitive information itself persist in email, chat, or any other insecure communications channel.
+</p>
+
+<h1>How It Works</h1>
+<p>
+  <ol>
+    <li>Enter the secret to share, an expiration date, and a view limit.</li>
+    <li>After submitting the form, you'll receive a temporary link, which can be shared.</li>
+    <li>Once the link expires or the view limit is surpassed, the secret is destroyed.</li>
+  </ol>
+</p>
+
+<h1>Requirements</h1>
+<p>
+  <ul>
+    <li>Apache or Nginx</li>
+    <li>PHP >= 5.5.9</li>
+    <li>OpenSSL PHP Extension</li>
+    <li>PDO PHP Extension</li>
+    <li>Mbstring PHP Extension</li>
+    <li>Tokenizer PHP Extension</li>
+  </ul>
+</p>
+
+<h1>Installation</h1>
+<p>
+  <ol>
+    <li>Run <code>composer create-project unicalabs/agrippa myagrippa</code> to create your instance of Agrippa.</li>
+    <li>Enter the newly-created project: <code>cd myagrippa</code></li>
+    <li>Change <code>APP_SALT</code> in <code>.env</code> to a randomly-generated value.</li>
+    <li>Create the database: <code>touch storage/database.sqlite</code> Alternatively, adjust <code>.env</code> to use your MySQL, PostgreSQL, or SQL server connection.</li>
+    <li>Set up the database: <code>php artisan migrate</code></li>
+    <li>Configure Apache or Nginx to serve the public folder. Use the Laravel documentation for guidance, or do some googling until we fix up this documentation.</li>
+  </ol>
+</p>
+
+<h1>Development</h1>
+<p>
+Documentation for the framework (Laravel 5.1) can be found on the <a href="http://laravel.com/docs/5.1">Laravel website</a>. To get a development environment up and running, see the <a href="http://laravel.com/docs/5.1/homestead">Laravel Homestead documentation</a>. You can reference the following example Homestead configuration, if it helps:
+<pre>
+---
+ip: "192.168.10.10"
+memory: 2048
+cpus: 2
+provider: virtualbox
+
+authorize: ~/.ssh/id_rsa.pub
+
+keys:
+    - ~/.ssh/id_rsa
+
+folders:
+    - map: ~/Documents/workspace/agrippa
+      to: /home/vagrant/agrippa
+
+sites:
+    - map: agrippa.local
+      to: /home/vagrant/agrippa/public
+
+variables:
+    - key: APP_ENV
+      value: local
+</pre>
+</p>
+
