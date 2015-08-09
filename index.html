@@ -5,7 +5,7 @@ layout: default
 
 <h1>About</h1>
 <p>
-Agrippa is a rewrite of <a href="https://github.com/bemosior/PHPasswordPusher">PHPasswordPusher</a>, a PHP-based secret sharing mechanism. Named after the work of <a href="https://en.wikipedia.org/wiki/Agrippa_(A_Book_of_the_Dead)">William Gibson</a>, Agrippa operates on the principle that sharing a temporary link to sensitive information is better than having the sensitive information itself persist in email, chat, or any other insecure communications channel.
+Agrippa is a PHP-based secret sharing mechanism. Named after the work of <a href="https://en.wikipedia.org/wiki/Agrippa_(A_Book_of_the_Dead)">William Gibson</a>, Agrippa operates on the principle that sharing a temporary link to sensitive information is better than having the sensitive information itself persist in email, chat, or any other insecure communications channel.
 </p>
 
 <h1>How It Works</h1>
@@ -22,6 +22,7 @@ Agrippa is a rewrite of <a href="https://github.com/bemosior/PHPasswordPusher">P
   <ul>
     <li>Apache or Nginx</li>
     <li>PHP >= 5.5.9</li>
+    <li>Composer</li>
     <li>OpenSSL PHP Extension</li>
     <li>PDO PHP Extension</li>
     <li>Mbstring PHP Extension</li>
@@ -70,3 +71,7 @@ variables:
 </pre>
 </p>
 
+<h1>History</h1>
+<p>
+The idea of sharing secrets through URLs with time and view limits originally came from <a href="https://github.com/pglombardo">pglombardo</a>'s <a href="https://github.com/pglombardo/PasswordPusher">PasswordPusher</a>, written with Ruby on Rails in 2011. In 2012, the project was shared on Reddit and subsequently open-sourced, leading to <a href="https://github.com/bemosior/PHPasswordPusher">PHPasswordPusher</a>, a PHP port of the original. Agrippa is itself a rewrite that sports the flexibility of the Laravel framework, while PHPasswordPusher provides the basic functionality for those constrained to older PHP versions (5.3+). As of August 2015, all projects continue to be actively maintained.
+</p>
