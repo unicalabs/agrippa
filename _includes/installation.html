@@ -1,0 +1,10 @@
+<p>
+  <ol>
+    <li>Run <code>composer create-project unicalabs/agrippa myagrippa</code> to create your instance of Agrippa.</li>
+    <li>Enter the newly-created project: <code>cd myagrippa</code></li>
+    <li>Change <code>APP_SALT</code> in <code>.env</code> to a randomly-generated value.</li>
+    <li>Create the database: <code>touch storage/database.sqlite</code> Alternatively, adjust <code>.env</code> to use your MySQL, PostgreSQL, or SQL server connection.</li>
+    <li>Set up the database: <code>php artisan migrate</code></li>
+    <li>Configure Apache or Nginx to serve the public folder. Use the <a href="http://laravel.com/docs/5.1#configuration">Laravel documentation</a> for guidance, or do some googling until we fix up this documentation.</li>
+  </ol>
+</p>

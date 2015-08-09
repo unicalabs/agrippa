@@ -1,14 +1,14 @@
 ---
-title: Getting Started
+title: Agrippa
 layout: default
 ---
 
-<h1>About</h1>
+<h4>About</h4>
 <p>
 Agrippa is a PHP-based secret sharing mechanism. Named after the work of <a href="https://en.wikipedia.org/wiki/Agrippa_(A_Book_of_the_Dead)">William Gibson</a>, Agrippa operates on the principle that sharing a temporary link to sensitive information is better than having the sensitive information itself persist in email, chat, or any other insecure communications channel.
 </p>
 
-<h1>How It Works</h1>
+<h4>How It Works</h4>
 <p>
   <ol>
     <li>Enter the secret to share, an expiration date, and a view limit.</li>
@@ -17,7 +17,7 @@ Agrippa is a PHP-based secret sharing mechanism. Named after the work of <a href
   </ol>
 </p>
 
-<h1>Requirements</h1>
+<h4>Requirements</h4>
 <p>
   <ul>
     <li>Apache or Nginx</li>
@@ -30,19 +30,10 @@ Agrippa is a PHP-based secret sharing mechanism. Named after the work of <a href
   </ul>
 </p>
 
-<h1>Installation</h1>
-<p>
-  <ol>
-    <li>Run <code>composer create-project unicalabs/agrippa myagrippa</code> to create your instance of Agrippa.</li>
-    <li>Enter the newly-created project: <code>cd myagrippa</code></li>
-    <li>Change <code>APP_SALT</code> in <code>.env</code> to a randomly-generated value.</li>
-    <li>Create the database: <code>touch storage/database.sqlite</code> Alternatively, adjust <code>.env</code> to use your MySQL, PostgreSQL, or SQL server connection.</li>
-    <li>Set up the database: <code>php artisan migrate</code></li>
-    <li>Configure Apache or Nginx to serve the public folder. Use the Laravel documentation for guidance, or do some googling until we fix up this documentation.</li>
-  </ol>
-</p>
+<h4>Installation</h4>
+{% include installation.html %}
 
-<h1>Development</h1>
+<h4>Development</h4>
 <p>
 Documentation for the framework (Laravel 5.1) can be found on the <a href="http://laravel.com/docs/5.1">Laravel website</a>. To get a development environment up and running, see the <a href="http://laravel.com/docs/5.1/homestead">Laravel Homestead documentation</a>. You can reference the following example Homestead configuration, if it helps:
 <pre>
@@ -71,7 +62,7 @@ variables:
 </pre>
 </p>
 
-<h1>History</h1>
+<h4>History</h4>
 <p>
 The idea of sharing secrets through URLs with time and view limits originally came from <a href="https://github.com/pglombardo">pglombardo</a>'s <a href="https://github.com/pglombardo/PasswordPusher">PasswordPusher</a>, written with Ruby on Rails in 2011. In 2012, the project was shared on Reddit and subsequently open-sourced, leading to <a href="https://github.com/bemosior/PHPasswordPusher">PHPasswordPusher</a>, a PHP port of the original. Agrippa is itself a rewrite that sports the flexibility of the Laravel framework, while PHPasswordPusher provides the basic functionality for those constrained to older PHP versions (5.3+). As of August 2015, all projects continue to be actively maintained.
 </p>
