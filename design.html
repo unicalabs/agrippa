@@ -8,7 +8,7 @@ Secrets are encrypted and stored in the database using <code>AES-256-CBC</code>.
 </p>
 
 <p>
-Links are constructed with UUIDs (v4) and are salted (with the <code>APP_SALT</code> value inside the <code>.env</code> file) then hashed (SHA-512) before storage.
+Links are constructed with UUIDs (v4) and are salted (with the <code>APP_SALT</code> value inside the <code>.env</code> file) then hashed (<code>SHA-512</code>) before storage.
 </p>
 
 <p>An individual link is checked for expiration or a surpassed view limit at each retrieval attempt. If the link should not be shown, its data is deleted. Future versions may include a scheduled job to regularly check link status.</p>
