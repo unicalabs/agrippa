@@ -11,14 +11,15 @@ Agrippa is a PHP-based secret sharing mechanism. Named after the work of <a href
 <h4>How It Works</h4>
 <p>
   <ol>
-    <li>Enter the secret to share, an expiration date, and a view limit.</li>
-    <li>After submitting the form, you'll receive a temporary link, which can be shared.</li>
+    <li>Enter the secret to share, an expiration date/time, and a view limit.</li>
+    <li>Receive a unique link to the secret, which can be shared with the intended recipient.</li>
     <li>Once the link expires or the view limit is surpassed, the secret is destroyed.</li>
   </ol>
 </p>
 
 <h4>Requirements</h4>
 <p>
+  In short, Agrippa has the same requirements as [Laravel 5.1](http://laravel.com/docs/5.1#installation):
   <ul>
     <li>Apache or Nginx</li>
     <li>PHP >= 5.5.9</li>
