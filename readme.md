@@ -8,15 +8,15 @@ For more information, visit [the homepage](http://getagrippa.com) or jump straig
 
 ## Overview
 
-#### 1. The secret is submitted with an expiration and a view limit.
+#### 1. The secret is submitted with an expiration date/time and a view limit.
 
 [![Step One](https://raw.githubusercontent.com/unicalabs/agrippa/gh-pages/images/1.png)](https://github.com/unicalabs/agrippa/blob/gh-pages/images/1.png)
 
-#### 2. The submitter receives a link to share.
+#### 2. The submitter receives a link that can be shared with the intended recipient.
 
 [![Step One](https://raw.githubusercontent.com/unicalabs/agrippa/gh-pages/images/2.png)](https://github.com/unicalabs/agrippa/blob/gh-pages/images/2.png)
 
-#### 3. The link recipient is able to see the secret
+#### 3. The recipient is able to use the link to retrieve the secret.
 
 [![Step One](https://raw.githubusercontent.com/unicalabs/agrippa/gh-pages/images/3.png)](https://github.com/unicalabs/agrippa/blob/gh-pages/images/3.png)
 
