@@ -3,12 +3,12 @@ title: Agrippa
 layout: default
 ---
 
-<h4>About</h4>
+<h4 id="about">About</h4>
 <p>
 Agrippa is a PHP-based secret sharing mechanism. Named after the work of <a href="https://en.wikipedia.org/wiki/Agrippa_(A_Book_of_the_Dead)">William Gibson</a>, Agrippa operates on the principle that sharing a temporary link to sensitive information is better than having the sensitive information itself persist in email, chat, or any other insecure communications channel.
 </p>
 
-<h4>How It Works</h4>
+<h4 id="how-it-works">How It Works</h4>
 <p>
   <ol>
     <li>Enter the secret to share, an expiration date/time, and a view limit.</li>
@@ -17,7 +17,7 @@ Agrippa is a PHP-based secret sharing mechanism. Named after the work of <a href
   </ol>
 </p>
 
-<h4>Requirements</h4>
+<h4 id="requirements">Requirements</h4>
 <p>
   In short, Agrippa has the same requirements as <a href="http://laravel.com/docs/5.1#installation">Laravel 5.1</a>:
   <ul>
@@ -31,10 +31,10 @@ Agrippa is a PHP-based secret sharing mechanism. Named after the work of <a href
   </ul>
 </p>
 
-<h4>Installation</h4>
+<h4 id="installation">Installation</h4>
 {% include installation.html %}
 
-<h4>Development</h4>
+<h4 id="development">Development</h4>
 <p>
 Documentation for the framework (Laravel 5.1) can be found on the <a href="http://laravel.com/docs/5.1">Laravel website</a>. To get a development environment up and running, see the <a href="http://laravel.com/docs/5.1/homestead">Laravel Homestead documentation</a>. You can reference the following example Homestead configuration, if it helps:
 <pre>
@@ -63,7 +63,7 @@ variables:
 </pre>
 </p>
 
-<h4>History</h4>
+<h4 id="history">History</h4>
 <p>
 The idea of sharing secrets through URLs with time and view limits originally came from <a href="https://github.com/pglombardo">pglombardo</a>'s <a href="https://github.com/pglombardo/PasswordPusher">PasswordPusher</a>, written with Ruby on Rails in 2011. In 2012, the project was shared on Reddit and subsequently open-sourced, leading to <a href="https://github.com/bemosior/PHPasswordPusher">PHPasswordPusher</a>, a PHP port of the original. Agrippa is itself a rewrite that sports the flexibility of the Laravel framework, while PHPasswordPusher provides the basic functionality for those constrained to older PHP versions (5.3+). As of August 2015, all projects continue to be actively maintained.
 </p>
