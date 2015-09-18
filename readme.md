@@ -28,6 +28,8 @@ For more information, visit [the homepage](http://getagrippa.com) or jump straig
 
 [![Step One](https://raw.githubusercontent.com/unicalabs/agrippa/gh-pages/images/5.png)](https://github.com/unicalabs/agrippa/blob/gh-pages/images/5.png)
 
+## Maintainer
+Agrippa is maintained by [Unica Labs, LLC](http://unicalabs.com).
 
 ## License
 Distributed under the [MIT license](license.md).
