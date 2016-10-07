@@ -17,3 +17,4 @@ RUN touch storage/database.sqlite
 RUN composer update
 RUN php artisan migrate
 RUN chown -R www-data:www-data storage bootstrap/cache
+RUN a2enmod rewrite
