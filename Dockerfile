@@ -10,7 +10,16 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
   mv composer.phar /usr/local/bin/composer && \
   composer create-project unicalabs/agrippa /var/www/html/agrippa
 
-COPY apache-agrippa.conf /etc/apache2/sites-available/000-default.conf
+RUN echo '<VirtualHost *:80>\n\
+    ServerAdmin webmaster@localhost\n\
+    DocumentRoot /var/www/html/agrippa/public\n\
+    <Directory /var/www/html/agrippa>\n\
+        AllowOverride All\n\
+    </Directory>\n\
+    ErrorLog ${APACHE_LOG_DIR}/error.log\n\
+    CustomLog ${APACHE_LOG_DIR}/access.log combined\n\
+</VirtualHost>'\
+> /etc/apache2/sites-available/000-default.conf
 
 WORKDIR /var/www/html/agrippa
 RUN touch storage/database.sqlite
